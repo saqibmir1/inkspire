@@ -1,0 +1,33 @@
+{% extends "books/base.html" %}
+
+{% block title %}Home | INKSPIRE{% endblock %}
+
+{% block content %}
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <form method="GET" action="{% url 'home' %}">
+            <input type="text" name="search" placeholder="Search by book or author..." value="{{ request.GET.search|default:'' }}">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <!-- Book List Section -->
+    <h2 class="section-title">Latest Books</h2>
+    <div class="book-list">
+        {% for book in books %}
+        <div class="book">
+            <img src="{{ book.cover_image.url }}" alt="{{ book.title }}">
+            <div class="book-content">
+                <h3 class="book-title">{{ book.title }}</h3>
+                <p class="book-author">by {{ book.author }}</p>
+                <div class="buttons">
+                    <a href="{{ book.file.url }}" class="button download-button">Download</a>
+                    <a href="{% url 'book_detail' book.pk %}" class="button details-button">Details</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No books found.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

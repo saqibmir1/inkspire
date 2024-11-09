@@ -1,0 +1,16 @@
+{% extends "books/base.html" %}
+
+{% block title %}{{ book.title }} - INKSPIRE{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{ book.title }}</h1>
+        <p><strong>Author:</strong> {{ book.author|default:"Not available" }}</p>
+        <p><strong>Genre:</strong> {{ book.genre|default:"Not available" }}</p>
+        <p><strong>Number of Pages:</strong> {{ book.number_of_pages|default:"Not available" }}</p>
+        <hr>
+        <p>{{ book.description|default:"No description available." }}</p>
+        <hr>
+        <a href="{{ book.file.url }}" class="btn-download" download>Download</a>
+    </div>
+{% endblock %}
