@@ -5,7 +5,11 @@ from django.db.models import Q
 def home(request):
     search_query = request.GET.get('search', '')
     if search_query:
-        books = Book.objects.filter(Q(title__icontains=search_query) | Q(author__icontains=search_query))
+        books = Book.objects.filter(
+            Q(title__icontains=search_query) | 
+            Q(author__icontains=search_query) | 
+            Q(genre__icontains=search_query)
+        )
     else:
         books = Book.objects.all().order_by('-id')[:50]
     return render(request, 'books/home.html', {

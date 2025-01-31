@@ -6,7 +6,7 @@
     <!-- Search Bar -->
     <div class="search-bar">
         <form method="GET" action="{% url 'home' %}">
-            <input type="text" name="search" placeholder="Search by book or author..." value="{{ request.GET.search|default:'' }}">
+            <input type="text" name="search" placeholder="Search by book, author or genre..." value="{{ request.GET.search|default:'' }}">
             <button type="submit">Search</button>
         </form>
     </div>
